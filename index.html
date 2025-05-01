@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalpa Labs – A New Era of AI</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body          { font-family: 'Inter', sans-serif; }
+    h1, .heading  { font-family: 'Playfair Display', serif; }
+    .logo-stroke  { stroke:#514437; stroke-width:1.8; fill:none; stroke-linecap:round; }
+  </style>
+</head>
+<body class="bg-[#F5EFE1] text-gray-900 antialiased">
+
+  <!-- ========= Top Bar ========= -->
+  <header class="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
+    <!-- Logo (24 × 24) -->
+    <a href="#" class="flex items-center gap-2">
+      <img src="kalpa-logo.svg" alt="Kalpa Labs logo" class="w-12 h-12" />
+      <span class="font-medium tracking-wide">KALPA LABS</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-10 text-sm">
+      <a href="#" class="hover:text-gray-700">About</a>
+      <a href="#" class="hover:text-gray-700">Services</a>
+      <a href="#" class="hover:text-gray-700">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ========= Hero ========= -->
+  <main class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 items-center gap-12 lg:gap-20 py-16">
+
+    <!-- Copy -->
+    <div>
+      <h1 class="heading text-5xl md:text-6xl font-semibold leading-tight mb-8">
+        A New<br />Era&nbsp;of&nbsp;AI
+      </h1>
+      <p class="text-lg md:text-xl max-w-md mb-10">
+        Discover the power of artificial intelligence with our cutting-edge
+        solutions for a changing world.
+      </p>
+      <a href="#"
+         class="inline-block rounded-full bg-[#514437] px-8 py-3 text-white text-sm font-medium shadow
+                hover:shadow-lg transition">
+        Get Started
+      </a>
+    </div>
+
+    <!-- Animated lotus + orbs -->
+    <div class="relative">
+      <div class="aspect-[3/4] w-full overflow-hidden">
+        <svg id="lotusHero" viewBox="0 0 800 1065" class="w-full h-full"
+             preserveAspectRatio="xMidYMid slice">
+          <!-- Glow definition -->
+          <defs>
+            <radialGradient id="orbGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#0d8c9a" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#04424b" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="blur"><feGaussianBlur stdDeviation="5" /></filter>
+          </defs>
+
+          <!-- ----- Scaled-up logo outlines (petal paths) ----- -->
+          <!-- centre -->
+          <path id="leaf0" d="M400 820 Q320 480 400 180 Q480 480 400 820 Z" fill="none"/>
+          <!-- upper-left -->
+          <path id="leaf1" d="M300 640 Q180 490 300 300 Q420 490 300 640 Z" fill="none"/>
+          <!-- upper-right -->
+          <path id="leaf2" d="M500 640 Q620 490 500 300 Q380 490 500 640 Z" fill="none"/>
+          <!-- mid-left -->
+          <path id="leaf3" d="M250 770 Q130 630 250 450 Q370 630 250 770 Z" fill="none"/>
+          <!-- mid-right -->
+          <path id="leaf4" d="M550 770 Q670 630 550 450 Q430 630 550 770 Z" fill="none"/>
+          <!-- lower-left -->
+          <path id="leaf5" d="M300 950 Q160 860 230 650 Q360 790 300 950 Z" fill="none"/>
+          <!-- lower-right -->
+          <path id="leaf6" d="M500 950 Q640 860 570 650 Q440 790 500 950 Z" fill="none"/>
+
+          <!-- Container for all animated circles -->
+          <g id="orbLayer" fill="url(#orbGrad)" filter="url(#blur)"></g>
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========= Orb generator ========= -->
+  <script>
+    /*
+      Each of the 7 leaf paths gets 13 orbs → 91 total.
+      Orbs pick random:
+        • radius  (4-12)
+        • opacity (.4-1)
+        • duration (9-22 s)
+        • negative begin offset so flow feels eternal
+    */
+    const leaves = ['leaf0','leaf1','leaf2','leaf3','leaf4','leaf5','leaf6'];
+    const ORBS_PER_LEAF = 13;
+
+    const layer = document.getElementById('orbLayer');
+    const NS    = 'http://www.w3.org/2000/svg';
+    const XLINK = 'http://www.w3.org/1999/xlink';
+
+    leaves.forEach(id=>{
+      for (let i=0;i<ORBS_PER_LEAF;i++){
+        const r  = (Math.random()*8 + 4).toFixed(1);      // 4-12 px
+        const op = (Math.random()*0.6 + 0.4).toFixed(2);  // 0.4-1
+        const d  = (Math.random()*13 + 9).toFixed(1);     // 9-22 s
+        const b  = -(Math.random()*d).toFixed(2) + 's';   // negative begin
+
+        const c = document.createElementNS(NS,'circle');
+        c.setAttribute('r', r);
+        c.setAttribute('opacity', op);
+
+        const a = document.createElementNS(NS,'animateMotion');
+        a.setAttribute('dur', d+'s');
+        a.setAttribute('begin', b);
+        a.setAttribute('repeatCount','indefinite');
+        a.setAttribute('rotate','auto');
+
+        const m = document.createElementNS(NS,'mpath');
+        m.setAttributeNS(XLINK,'href','#'+id);
+
+        a.appendChild(m);
+        c.appendChild(a);
+        layer.appendChild(c);
+      }
+    });
+  </script>
+</body>
+</html>
