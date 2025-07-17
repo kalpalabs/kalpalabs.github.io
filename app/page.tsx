@@ -1,9 +1,41 @@
+
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Mail, Linkedin, Twitter, GraduationCap, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { theme } from "@/lib/theme"
+import { getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  // Cal.com integration. 
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "30min" });
+      cal("floatingButton", {
+        calLink: "pshishodia/30min",
+        config: {
+          layout: "month_view",
+          theme: "light"
+        },
+        buttonPosition: "bottom-right",
+        buttonText:"Talk to us",
+        buttonColor: theme.colors.button.primary,
+        buttonTextColor: theme.colors.button.text
+      });
+      cal("ui", {
+        theme: "auto",
+        cssVarsPerTheme: {
+          light: { "cal-brand": theme.colors.button.primary },
+          dark: { "cal-brand": theme.colors.button.primary }
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view"
+      }, );
+    })();
+  }, []);
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme.colors.background }}>
       <main>
@@ -19,15 +51,6 @@ export default function HomePage() {
               <p className="text-xl mb-12 leading-relaxed" style={{ color: theme.colors.text }}>
                 Real-time Voice Agents with millions of voices.
               </p>
-              <Link href="/contactus">
-                <Button
-                  className="px-6 py-3 rounded-full text-white font-medium flex items-center space-x-2 hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: theme.colors.button.primary, color: theme.colors.button.text }}
-                >
-                  <span>Talk to Us</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </Button>
-              </Link>
             </div>
 
             {/* Decorative dots pattern */}
