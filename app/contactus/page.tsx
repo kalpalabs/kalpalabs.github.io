@@ -4,6 +4,8 @@ import { theme } from "@/lib/theme"
 
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
+import { Navbar } from '@/components/navbar'
+import { Footer } from '@/components/footer'
 
 
 export default function ContactUsPage() {
@@ -14,6 +16,8 @@ export default function ContactUsPage() {
     })();
   }, [])
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen" style={{ backgroundColor: theme.colors.background }}>
       <div className="mx-auto px-8 py-24">
         <div className="text-center">
@@ -30,5 +34,7 @@ export default function ContactUsPage() {
         </div>
       </div>
     </div>
+    <Footer /> 
+    </>
   )
 }
