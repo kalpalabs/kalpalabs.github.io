@@ -7,6 +7,8 @@ import Link from "next/link";
 import { theme } from "@/lib/theme";
 import { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
+import { Navbar } from '@/components/navbar'
+import { Footer } from '@/components/footer'
 
 export default function HomePage() {
   // Cal.com integration.
@@ -40,12 +42,16 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme.colors.background }}>
-      <main>
-        <HeroSection />
-        <TeamSection />
-      </main>
-    </div>
+    <>
+      <Navbar />
+      <div className="min-h-screen" style={{ backgroundColor: theme.colors.background }}>
+        <main>
+          <HeroSection />
+          <TeamSection />
+        </main>
+      </div>
+      <Footer />
+    </>
   );
 }
 
