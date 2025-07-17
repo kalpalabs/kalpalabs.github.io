@@ -15,7 +15,7 @@ export default function ContactUsPage() {
   }, [])
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme.colors.background }}>
-      <div className="max-w-4xl mx-auto px-8 py-24">
+      <div className="mx-auto px-8 py-24">
         <div className="text-center">
           <h1 className="text-5xl font-serif mb-8" style={{ color: theme.colors.text }}>
             <p className="text-lg leading-relaxed mb-8" style={{ color: theme.colors.textMuted }}>

@@ -6,19 +6,19 @@ export function Navbar() {
     <header className="py-6">
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-2 group" style={{ textDecoration: "none" }}>
             <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: theme.colors.primary }}
+              className="w-12 h-12 rounded-full flex items-center justify-center"
+              // style={{ backgroundColor: theme.colors.primary }}
             >
-              <img src="/logo.svg?height=128&width=128" alt="Kalpa Labs Logo" className="" />
+              <img src="/logo.svg" alt="Kalpa Labs Logo" className="" />
             </div>
-            <span className="text-lg font-medium" style={{ color: theme.colors.header.logo }}>
+            <span className="text-lg font-medium group-hover:opacity-80 transition-opacity" style={{ color: theme.colors.header.logo }}>
               KALPA LABS
             </span>
-          </div>
+          </Link>
 
-          <nav className="flex items-center space-x-12">
+          <nav className="flex items-center space-x-6">
             <Link
               href="/#about"
               className="text-sm font-medium transition-colors hover:opacity-70"
@@ -32,13 +32,6 @@ export function Navbar() {
               style={{ color: theme.colors.header.text }}
             >
               Contact Us
-            </Link>
-            <Link
-              href="/blog"
-              className="text-sm font-medium transition-colors hover:opacity-70"
-              style={{ color: theme.colors.header.text }}
-            >
-              Blog
             </Link>
           </nav>
         </div>
